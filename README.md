@@ -57,7 +57,7 @@ Optional
 #### tidal_ocean.m 
 Description: Propagate the solution from the core to the surface but with the possibility of a subsurface ocean 
 
-**Inputs: ** 
+**Inputs:**  
 Required  
 - l: spherical harmonic degree
 - R: vector containing the upper boundary of each layer
@@ -195,8 +195,8 @@ Optional
 
 #### compute_energy.m 
 
-**Description:** Given the strain, stress, variation of fluid content and pore pressure compute energy dissipated 
-**Inputs:**  
+**Description:** Given the strain, stress, variation of fluid content and pore pressure compute energy dissipated.  
+**Inputs:**   
 - strain: strain tensor 
 	- strain(icolat,ilon,ir,1)=\epsilon_r_r;
 	- strain(icolat,ilon,ir,2)=\epsilon_theta_theta;
