@@ -243,11 +243,11 @@ Optional
 The following example scripts are included
 
 #### Europa.m:
-Example to compute the tidal response of a viscoelastic Europa. The interior model of Europa is given by that of Beuthe, 2013 "Spatial patterns of tidal dissipation" https://doi.org/10.1016/j.icarus.2012.11.020
-% We use the interior structure given in Table 5
+Example to compute the tidal response of a viscoelastic Europa. The interior model of Europa is given by that of Beuthe, 2013 "Spatial patterns of tidal dissipation" https://doi.org/10.1016/j.icarus.2012.11.020 
+We use the interior structure given in Table 5
 
 #### Io.m
-Example to compute the tidal response of a viscoelastic Io. 
+Example to compute the tidal response of a viscoelastic Io.   
 The interior model of Io corresponds to models A and B of Steinke et al. 2020. https://doi.org/10.1016/j.icarus.2019.05.001.
 
 #### Enceladus_Only_Core.m
@@ -255,4 +255,5 @@ Example to compute the proviscoelastic response of Enceladus.
 We consider the model of Liao et al. 2020: https://doi.org/10.1029/2019JE006209. In such case the boundary conditions are given by Eq. (A16)
 
 #### Enceladus.m
-Example to compute the proviscoelastic response of Enceladus. Interior model parameters given in Table 1 of the paper
+Example to compute the proviscoelastic response of Enceladus.  
+Interior model parameters given in Table 1 of the paper
