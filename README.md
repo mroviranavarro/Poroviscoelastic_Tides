@@ -12,8 +12,7 @@ The following information is given here:
 ## INCLUDED FUNCTIONS
 
 #### tidal.m  
-Description: Propagate the solution from the core to the surface    
-
+Description: Propagate the solution from the center to the surface    
 Inputs:   
 Required  
 - l: spherical harmonic degree.
@@ -33,17 +32,17 @@ Required
 
 Optional
 - radial_points: number of radial points
-- resample: To solve the PDE it is good to have  a lot of points in the  radial direction, but then to build the solution u need to deal with big matrices that slows things down. In such case the resample option is useful.
+- resample: To solve the PDE it is good to have  a lot of points in the  radial direction, but then to build the solution u need to deal with big matrices that slows things down. In such case the resample option is useful. radial_points X lat_points X lon_points
 - pressure_BC: use pressure boundary condition instead of constant flux
-- strain_BC: use strain
-- print_results: print some results on the screen solution at the surface, love numbers and y plots
+- strain_BC: use prescribed strain as in Liao et al. 2020
+- print_results: print some results on the screen solution at the surface, Love numbers and y plots
 - self_gravity: (1) if self-gravity is used in the momentum equation, (0) if not
 - tidal_fluid: (1) if tidal potential affects the fluid, (0) if not
 - gravity_on: turn gravity on (1) and off (0). Default 1
 
 
 Outputs
-- y(1:8,1:nrr,1:Nlayers): solution vector for each layer
+- y(1:8,1:nrr,1:Nlayers): solution vector for each layer, y functions are given in Appendix A
 	- y1: normal displacement 
 	- y2: tangential displacements
 	- y3: normal stress
@@ -56,7 +55,7 @@ Outputs
 
 
 #### tidal_ocean.m 
-Description: Propagate the solution from the core to the surface but with the possibility of an ocean 
+Description: Propagate the solution from the core to the surface but with the possibility of a subsurface ocean 
 
 Inputs: 
 Required  
@@ -86,7 +85,7 @@ Optional
 - gravity_on: turn gravity on (1) and off (0). Default 1
 
 Outputs
-- y(1:8,1:nrr,1:Nlayers): solution vector for each layer
+- y(1:8,1:nrr,1:Nlayers): solution vector for each layer,  y functions are given in Appendix A
 	- y1: normal displacement 
 	- y2: tangential displacements
 	- y3: normal stress
@@ -119,7 +118,6 @@ Inputs:
 - self_gravity: (1) if self-gravity is used in the momentum equation, (0) if not
 - tidal_fluid: (1) if tidal potential affects the fluid, (0) if not
 
-
 Outputs:
 - Y: Propagation matrix 
 
@@ -134,7 +132,7 @@ Outputs:
 - Y: Propagation matrix 
 	
 #### build_solution.m  
-Description: Given the solution vector y(r), compute the solution in a colat-lon-r grid for a given order and degree. 
+Description: Given the solution vector y(r), compute the solution in a colat-lon-r grid for a given order and degree (see Appendix C) 
 
 Inputs: 
 Required
@@ -162,13 +160,12 @@ Optional
 Outputs:
 - colat: colatitude where solution is given 
 - lon: longitudes where solution is given 
-- rr: list of radial points where solution is returned
+- rr: radial points where solution is returned
 - displacements: displacement vector  
 	- displacements(icolat,ilon,ir,1): radial component of the displacement
 	- displacements(icolat,ilon,ir,2): latitudinal component of the
 	- displacement
-	- displacements(icolat,ilon,ir,3): longitudinal component of the
-                diplacement
+	- displacements(icolat,ilon,ir,3): longitudinal component of the diplacement
 - flux: flux vector
 	- flux(icolat,ilon,ir,1): radial component of the flux
 	- flux(icolat,ilon,ir,2): latitudinal component of the flux
@@ -199,7 +196,6 @@ Outputs:
 #### compute_energy.m 
 
 Description: Given the strain, stress, variation of fluid content and pore pressure compute energy dissipated 
-
 Inputs: 
 - strain: strain tensor 
 	- strain(icolat,ilon,ir,1)=\epsilon_r_r;
