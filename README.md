@@ -1,60 +1,61 @@
 # Poroviscoelastic_Tides
 
-AUTHOR: M. Rovira-Navarro 
-DATE: October 2021
-CODE: Code accompanying the paper: "The Tides of Enceladus' Core". It can be used to btain the viscoelastic or poroviscoelastic tidal response of a moon due to eccentricity tides
-The following information is given here: 
-(1) INCLUDED FUNCTIONS: Functions included, their use, input and outputs 
-(2) HOW TO USE? Description of how the code is normally used 
-(3) EXAMPLES: Description of the examples accompanying the code.
+AUTHOR: M. Rovira-Navarro.  
+DATE: October 2021. 
+CODE: Code accompanying the paper: "The Tides of Enceladus' Core". It can be used to btain the viscoelastic or poroviscoelastic tidal response of a moon due to eccentricity tides.   
+The following information is given here:     
+1. INCLUDED FUNCTIONS: Functions included, their use, input and outputs   
+2. HOW TO USE? Description of how the code is normally used.  
+3.  EXAMPLES: Description of the examples accompanying the code.    
 
 
--------- INCLUDED FUNCTIONS 
-** tidal.m
-Description: Propagate the solution from the core to the surface  
+## INCLUDED FUNCTIONS
 
-Inputs: 
-	Required 
-	l: spherical harmonic degree
-	R: vector containing the upper boundary of each layer
-	rho: vector containing the average density of each layer
-	rhof: vector containing the fluid average density of each layer
-	mu: vector containing the shear modulus of each layer
-	Ks: vector containing the solid bulk modulus of each layer
-	etas: vector containing the viscosity of the solid 
-	alpha: vector conatining alpha
-	poro: vector containing porosity for each layer 
-	k_perm: vector containing permeability for each layer
-	etaf: vector containing fluid viscosity for each layer
-	Kf: vector containing the fluid bulk modulus of each layer
-	liquid: vector stating if layer is fluid (1) or not (0). Here used to indicate the model has a fluid core
-	omega: forcing frequency
+#### tidal.m  
+Description: Propagate the solution from the core to the surface    
 
-	Optional
-	radial_points: number of radial points
-	resample: To solve the PDE it is good to have  a lot of points in the  radial direction, but then to build the solution u need to deal with big matrices that slows things down. In such case the resample option is useful.
-    	pressure_BC: use pressure boundary condition instead of constant flux
-    	strain_BC: use strain
-    	print_results: print some results on the screen solution at the surface, love numbers and y plots
-    	self_gravity: (1) if self-gravity is used in the momentum equation, (0) if not
-    	tidal_fluid: (1) if tidal potential affects the fluid, (0) if not
-    	gravity_on: turn gravity on (1) and off (0). Default 1
+Inputs:   
+Required  
+- l: spherical harmonic degree.
+- R: vector containing the upper boundary of each layer. 
+- rho: vector containing the average density of each layer. 
+- rhof: vector containing the fluid average density of each layer. 
+- mu: vector containing the shear modulus of each layer. 
+- Ks: vector containing the solid bulk modulus of each layer. 
+- etas: vector containing the viscosity of the solid.  
+- alpha: vector conatining alpha. 
+- poro: vector containing porosity for each layer.  
+- k_perm: vector containing permeability for each layer. 
+- etaf: vector containing fluid viscosity for each layer. 
+- Kf: vector containing the fluid bulk modulus of each layer. 
+- liquid: vector stating if layer is fluid (1) or not (0). Here used to indicate the model has a fluid core. 
+- omega: forcing frequency. 
+
+Optional
+- radial_points: number of radial points
+- resample: To solve the PDE it is good to have  a lot of points in the  radial direction, but then to build the solution u need to deal with big matrices that slows things down. In such case the resample option is useful.
+- pressure_BC: use pressure boundary condition instead of constant flux
+- strain_BC: use strain
+- print_results: print some results on the screen solution at the surface, love numbers and y plots
+- self_gravity: (1) if self-gravity is used in the momentum equation, (0) if not
+- tidal_fluid: (1) if tidal potential affects the fluid, (0) if not
+- gravity_on: turn gravity on (1) and off (0). Default 1
 
 
 Outputs
-	y(1:8,Nlayers): solution vector for each layer
-     		y1: normal displacement 
-     		y2: tangential displacements
-     		y3: normal stress
-     		y4: tangential stress
-     		y5: perturbing potential 
-     		y6: potential stress
-     		y7: pore pressure
-     		y8: radial flux
-	r: radial points where solution is obtained 
+- y(1:8,Nlayers): solution vector for each layer
+	- y1: normal displacement 
+	- y2: tangential displacements
+	- y3: normal stress
+	- y4: tangential stress
+	- y5: perturbing potential 
+	- y6: potential stress
+	- y7: pore pressure
+	- y8: radial flux
+- r: radial points where solution is obtained 
 
 
-** tidal_ocean.m
+#### tidal_ocean.m 
 Description: Propagate the solution from the core to the surface but with the possibility of an ocean 
 
 Inputs: 
@@ -96,7 +97,7 @@ Outputs
      		y8: radial flux
 	r: radial points where solution is obtained 
 
-** propagation_matrix_porosity.m
+#### propagation_matrix_porosity.m 
 Description: Compute the propagation matrix for the poroviscoelastic normal mode problem  (Eq. (B1))
 
 Inputs: 
@@ -119,7 +120,7 @@ Inputs:
 Outputs:
 	Y: Propagation matrix 
 
-** propagation_matrix_ocean.m
+#### propagation_matrix_ocean.m 
 Description: Compute the propagation matrix for the ocean layer (Eq. (B2))  
 Inputs: 
 	lin: spherical harmonic degree
@@ -129,7 +130,7 @@ Inputs:
 Outputs:
 	Y: Propagation matrix 
 	
-** build_solution.m
+#### build_solution.m  
 Description: Given the solution vector y(r), compute the solution in a colat-lon-r grid for a given order and degree. 
 
 Inputs: 
@@ -195,7 +196,7 @@ Outputs:
 		varargout{3}: divergence of the flux
                 
 
-** compute_energy.m
+#### compute_energy.m 
 
 Description: Given the strain, stress, variation of fluid content and pore pressure compute energy dissipated 
 
@@ -242,28 +243,28 @@ Outputs:
 	energy_fluid_total: Total energy dissipated in the fluid
 
 
--------- HOW TO USE?
+## HOW TO USE? 
 
 (1) Define interior model 
 (2) Obtain radial functions using tidal.m or tidal_ocean
 (3) Obtain the complex fields a(colat,lon,r)
 (4) Compute tidal dissipation
 
--------- EXAMPLES 
+## EXAMPLES 
 
 The following example scripts are included
 
-** (1) Europa.m:
+#### (1) Europa.m:
 Example to compute the tidal response of a viscoelastic Europa. The interior model of Europa is given by that of Beuthe, 2013 "Spatial patterns of tidal dissipation" https://doi.org/10.1016/j.icarus.2012.11.020
 % We use the interior structure given in Table 5
 
-** (2) Io.m
+#### (2) Io.m
 Example to compute the tidal response of a viscoelastic Io. 
 The interior model of Io corresponds to models A and B of Steinke et al. 2020. https://doi.org/10.1016/j.icarus.2019.05.001.
 
-** (3) Enceladus_Only_Core.m
+#### (3) Enceladus_Only_Core.m
 Example to compute the proviscoelastic response of Enceladus. 
 We consider the model of Liao et al. 2020: https://doi.org/10.1029/2019JE006209. In such case the boundary conditions are given by Eq. (A16)
 
-** (4) Enceladus.m
-% Example to compute the proviscoelastic response of Enceladus. Interior model parameters given in Table 1 of the paper
+#### (4) Enceladus.m
+Example to compute the proviscoelastic response of Enceladus. Interior model parameters given in Table 1 of the paper
