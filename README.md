@@ -1,8 +1,8 @@
 # Poroviscoelastic_Tides
 
-AUTHOR: M. Rovira-Navarro.  
-DATE: October 2021. 
-CODE: Code accompanying the paper: "The Tides of Enceladus' Core". It can be used to btain the viscoelastic or poroviscoelastic tidal response of a moon due to eccentricity tides.   
+**AUTHOR**: M. Rovira-Navarro.  
+**DATE**: October 2021.   
+**CODE**: Code accompanying the paper: "The Tides of Enceladus' Core". It can be used to btain the viscoelastic or poroviscoelastic tidal response of a moon due to eccentricity tides.   
 The following information is given here:     
 1. INCLUDED FUNCTIONS: Functions included, their use, input and outputs   
 2. HOW TO USE? Description of how the code is normally used.  
@@ -12,8 +12,8 @@ The following information is given here:
 ## INCLUDED FUNCTIONS
 
 #### tidal.m  
-Description: Propagate the solution from the center to the surface    
-Inputs:   
+**Description**: Propagate the solution from the center to the surface    
+**Inputs**:   
 Required  
 - l: spherical harmonic degree.
 - R: vector containing the upper boundary of each layer. 
@@ -41,7 +41,7 @@ Optional
 - gravity_on: turn gravity on (1) and off (0). Default 1
 
 
-Outputs
+**Outputs**
 - y(1:8,1:nrr,1:Nlayers): solution vector for each layer, y functions are given in Appendix A
 	- y1: normal displacement 
 	- y2: tangential displacements
@@ -57,7 +57,7 @@ Outputs
 #### tidal_ocean.m 
 Description: Propagate the solution from the core to the surface but with the possibility of a subsurface ocean 
 
-Inputs: 
+**Inputs: **
 Required  
 - l: spherical harmonic degree
 - R: vector containing the upper boundary of each layer
@@ -84,7 +84,7 @@ Optional
 - tidal_fluid: (1) if tidal potential affects the fluid, (0) if not
 - gravity_on: turn gravity on (1) and off (0). Default 1
 
-Outputs
+**Outputs**
 - y(1:8,1:nrr,1:Nlayers): solution vector for each layer,  y functions are given in Appendix A
 	- y1: normal displacement 
 	- y2: tangential displacements
@@ -99,7 +99,7 @@ Outputs
 #### propagation_matrix_porosity.m 
 Description: Compute the propagation matrix for the poroviscoelastic normal mode problem  (Eq. (B1))
 
-Inputs: 
+**Inputs: **
 - lin: spherical harmonic degree
 - rL: radial position
 - rhoL: average density
@@ -118,23 +118,23 @@ Inputs:
 - self_gravity: (1) if self-gravity is used in the momentum equation, (0) if not
 - tidal_fluid: (1) if tidal potential affects the fluid, (0) if not
 
-Outputs:
+**Outputs:**
 - Y: Propagation matrix 
 
 #### propagation_matrix_ocean.m 
-Description: Compute the propagation matrix for the ocean layer (Eq. (B2))  
-Inputs: 
+**Description:** Compute the propagation matrix for the ocean layer (Eq. (B2))  
+**Inputs:** 
 - lin: spherical harmonic degree
 - rL: radial position
 - rhoL: density of the mantle 
 - gL: gravity 
-Outputs:
+**Outputs:**
 - Y: Propagation matrix 
 	
 #### build_solution.m  
-Description: Given the solution vector y(r), compute the solution in a colat-lon-r grid for a given order and degree (see Appendix C) 
+**Description:** Given the solution vector y(r), compute the solution in a colat-lon-r grid for a given order and degree (see Appendix C) 
 
-Inputs: 
+**Inputs:** 
 Required
 - y: solution vector y(1:8,1:nrr,1:Nlayers)
 - r: radial points corresponding to y(1:8,1:nrr,1:Nlayers)
@@ -157,7 +157,7 @@ Optional
 - tidal_fluid: (1) if tides affect the fluid, (0) if not. 
 - lat_points: number of points used in the latitide,longitude grid. Default 70
 
-Outputs:
+**Outputs:**
 - colat: colatitude where solution is given 
 - lon: longitudes where solution is given 
 - rr: radial points where solution is returned
@@ -195,8 +195,8 @@ Outputs:
 
 #### compute_energy.m 
 
-Description: Given the strain, stress, variation of fluid content and pore pressure compute energy dissipated 
-Inputs: 
+**Description:** Given the strain, stress, variation of fluid content and pore pressure compute energy dissipated 
+**Inputs:** 
 - strain: strain tensor 
 	- strain(icolat,ilon,ir,1)=\epsilon_r_r;
 	- strain(icolat,ilon,ir,2)=\epsilon_theta_theta;
@@ -220,7 +220,7 @@ Inputs:
 - etaf:  viscosity of the fluid
 - k_perm: permeability
 
-Outputs:
+**Outputs:**
 - energy_solid(icolat,ilon,ir): volumetric energy dissipated in the solid matrix, computed using Eq. (19a)
 - energy_solid_pore(icolat,ilon,ir): energy dissipated in the solid due to pore pressure, Eq. (19a) term with pressure
 - energy_fluid(icolat,ilon,ir,1): energy dissipated in due to Darcy's flow, computed using  Eq. (19b)
