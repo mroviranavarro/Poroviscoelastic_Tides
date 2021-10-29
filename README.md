@@ -99,7 +99,7 @@ Optional
 #### propagation_matrix_porosity.m 
 Description: Compute the propagation matrix for the poroviscoelastic normal mode problem  (Eq. (B1))
 
-**Inputs: ** 
+**Inputs:**    
 - lin: spherical harmonic degree
 - rL: radial position
 - rhoL: average density
